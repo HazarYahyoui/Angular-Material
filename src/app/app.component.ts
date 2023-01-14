@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
+import { MatSort, Sort } from "@angular/material/sort";
+import { MatTableDataSource } from '@angular/material/table';
 // Data table
 export interface PeriodicElement {
   name: string;
@@ -34,7 +36,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   notifications = 0;
   showSpinner = false;
@@ -108,20 +110,26 @@ export class AppComponent implements OnInit {
   // }
 
   // Dialog
-  constructor(public dialog: MatDialog){}
+  // constructor(public dialog: MatDialog){}
  
-  openDialog(){
-    let dialogRef = this.dialog.open(DialogExampleComponent, {data:{name:'hazar'}});
-    dialogRef.afterClosed().subscribe(result=>{
-     console.log('Dialog result:',result);
+  // openDialog(){
+  //   let dialogRef = this.dialog.open(DialogExampleComponent, {data:{name:'hazar'}});
+  //   dialogRef.afterClosed().subscribe(result=>{
+  //    console.log('Dialog result:',result);
      
-    });
-  }
+  //   });
+  // }
 
   // Data Table
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  ngAfterViewInit(){
+    this.dataSource.sort  = this.sort;
+  }
 }
 
   
