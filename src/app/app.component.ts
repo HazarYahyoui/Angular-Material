@@ -84,13 +84,13 @@ export class AppComponent implements OnInit, AfterViewInit {
     
   }
   // DatePicker 
-  minDate = new Date();
-  maxDate = new Date(2023,0,10);
+  // minDate = new Date();
+  // maxDate = new Date(2023,0,10);
 
-  dateFilter = (date: any |null)  =>{
-    const day = date.getDay();
-    return day !== 0 && day!==6
-  }
+  // dateFilter = (date: any |null)  =>{
+  //   const day = date.getDay();
+  //   return day !== 0 && day!==6
+  // }
 
   // Snackbar
   // constructor(private snackbar:MatSnackBar){}
