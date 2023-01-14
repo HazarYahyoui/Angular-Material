@@ -70,12 +70,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   return subject? subject.name : undefined
 }
 
-  loadData(){
-    this.showSpinner=true;
-    setTimeout(()=> {
-     this.showSpinner=false
-    }, 5000)
-  }
+  // loadData(){
+  //   this.showSpinner=true;
+  //   setTimeout(()=> {
+  //    this.showSpinner=false
+  //   }, 5000)
+  // }
 
   opened = false;
 
